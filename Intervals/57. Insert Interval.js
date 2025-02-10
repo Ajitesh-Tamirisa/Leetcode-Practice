@@ -48,7 +48,7 @@ var insert = function(intervals, newInterval) {
     // So far, all intervals that have end<newInterval's start have been covered. 
     // Non overlapping intervals that end before the newInterval starts have been skipped and added to result.
     // So from now on all intervals' ends >= newInterval's start
-    // Condition? Given the above situation we can say intervals are overlapping if intervals[i][0]<=newInterval[1]
+    // Condition? Given the above situation we can say intervals are overlapping if interval start <= newInterval end i.e. intervals[i][0]<=newInterval[1]
     while(i<len && intervals[i][0]<=newInterval[1]){
         newInterval = [Math.min(newInterval[0], intervals[i][0]), 
                         Math.max(newInterval[1], intervals[i][1])];
