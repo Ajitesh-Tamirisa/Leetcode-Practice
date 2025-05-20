@@ -73,3 +73,33 @@ var mergeKLists = function(lists) {
     }
     return head.next;
 };
+
+// Using min heap - O(n log k)
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists = function(lists) {
+    let pq = new MinPriorityQueue(x => x.val);
+    for(let list of lists){
+        if(list)    pq.enqueue(list);
+    }
+    let head = new ListNode();
+    let curr = head;
+    while(pq.size()>0){
+        let node = pq.dequeue();
+        curr.next = node;
+        curr = curr.next;
+        node = node.next;
+        if(node)    pq.enqueue(node);
+    }
+    return head.next;
+};
